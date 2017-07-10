@@ -13,7 +13,7 @@ Capybara.app = Bnb
 
 # if you want to use helpers add below ----
 # require_relative 'helpers/sessions'
-# require_relative 'helpers/users'
+require_relative 'helpers/users'
 
 RSpec.configure do |config|
 
@@ -43,6 +43,6 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   # include helpers below
-  # config.include Helper
+  config.include SessionHelpers
 
 end
