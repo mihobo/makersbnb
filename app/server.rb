@@ -6,5 +6,5 @@ class Bnb < Sinatra::Base
     "WOOOOOO"
   end
 
-
+  run! if app_file == $0
 end
