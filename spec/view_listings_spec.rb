@@ -8,7 +8,7 @@ feature 'viewing listings' do
     visit '/listings'
     expect(page.status_code).to eq 200
     within 'ul#listings' do
-      expect(page).to have_content('Listings')
+      expect(page).to have_content('London')
     end
   end
 end
