@@ -1,9 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 require './app/app.rb'
 require './app/models/listing'
-
-# require './app/models/listing'
-# require './app/models/user'
+require './app/models/user'
 
 require 'capybara'
 require 'capybara/rspec'
@@ -16,8 +14,6 @@ Capybara.app = Bnb
 # if you want to use helpers add below ----
 # require_relative 'helpers/sessions'
 # require_relative 'helpers/users'
-
-
 
 RSpec.configure do |config|
 
