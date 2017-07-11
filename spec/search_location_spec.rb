@@ -1,5 +1,6 @@
 feature 'Search by location' do
   scenario 'User can search by location' do
+    new_listing
     visit '/listings'
     fill_in 'location', with: 'London'
     click_button 'Search'

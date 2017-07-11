@@ -14,6 +14,7 @@ Capybara.app = Bnb
 # if you want to use helpers add below ----
 # require_relative 'helpers/sessions'
 require_relative 'helpers/users'
+require_relative 'helpers/listings'
 
 RSpec.configure do |config|
 
@@ -21,11 +22,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
- 
+
   config.before(:each) do
     DatabaseCleaner.start
   end
- 
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
@@ -44,5 +45,6 @@ RSpec.configure do |config|
 
   # include helpers below
   config.include SessionHelpers
+  config.include ListingsHelpers
 
 end
