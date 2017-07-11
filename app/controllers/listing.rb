@@ -1,6 +1,8 @@
 class Bnb < Sinatra::Base
+
   get '/listings' do
     @listings = Listing.all
+    p @listings
     erb :'/listings/index'
   end
 
@@ -9,12 +11,21 @@ class Bnb < Sinatra::Base
   end
 
   post '/listings' do
-    Listing.create(title: params[:title],
+    Listing.first_or_create(title: params[:title],
     location: params[:location],
     beds: params[:beds],
     price: params[:price],
     max_guests: params[:max_guests])
     redirect '/listings'
+  end
+
+  post '/search' do
+    redirect "/search/#{params[:location]}"
+  end
+
+  get '/search/:location' do
+    @listings = Listing.all(location: params[:location])
+    erb :'listings/index'
   end
 
 end

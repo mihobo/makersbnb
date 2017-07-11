@@ -2,11 +2,16 @@
 <ul id='listings'>
   <% @listings.each do |listing| %>
   <li>
-        Title: <%= listing.title %>
-        Location: <%= listing.location %>
-        Beds: <%= listing.beds %>
-        Price: <%= listing.price %>
-        Max guests: <%= listing.max_guests %>
-      </li>
-    <% end %>
+    Title: <%= listing.title %>
+    Location: <%= listing.location %>
+    Beds: <%= listing.beds %>
+    Price: <%= listing.price %>
+    Max guests: <%= listing.max_guests %>
+  </li>
+  <% end %>
 </ul>
+
+<form action='/search' method='post'>
+  <input type='text' name='location' />
+  <input type='submit' value='Search'/>
+</form>
