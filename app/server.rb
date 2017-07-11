@@ -3,7 +3,6 @@ class Bnb < Sinatra::Base
   enable :sessions
 
   get '/' do
-    @username = current_user.username
     erb :index
   end
 

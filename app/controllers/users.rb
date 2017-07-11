@@ -9,9 +9,10 @@ class Bnb < Sinatra::Base
                       last_name: params[:lastname],
                       username: params[:username],
                       password: params[:password])
-    @user.save
-    session[:user_id] = @user.id
-    redirect '/'
+    if @user.save
+      session[:user_id] = @user.id
+    end
+    redirect '/listings'
   end
 
 end

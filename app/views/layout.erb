@@ -3,7 +3,9 @@
     <title>MakersBnb</title>
   </head>
   <body>
-      <%= @username %>
+    <!-- <% if current_user %> -->
+      <%= current_user.username %>
+    <!-- <% end %> -->
   </body>
 
   <%= yield %>
