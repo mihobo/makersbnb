@@ -1,13 +1,24 @@
 feature 'Add listings' do
-  scenario 'I can add a listing' do
-    visit '/listings/new'
-    fill_in 'title', with: '2 bed home'
-    fill_in 'location', with: 'London'
-    fill_in 'beds', with: 2
-    fill_in 'price', with: '£400'
-    fill_in 'max_guests', with: 4
-    click_button 'Add listing'
-    visit '/listings'
-    expect(page).to have_content('2 bed home')
+  before(:each) do
+    User.create(email: 'easy@aol.com',
+    first_name: 'meepo',
+    last_name: 'ronaldo',
+    username: 'uzer',
+    password: 'password',
+    password_confirmation: 'password'
+    )
   end
+
+  scenario 'I can add a listing' do
+    sign_in(email: 'easy@aol.com', password: 'password')
+    expect{new_listing}.to change(Listing, :count).by(1)
+    visit '/listings'
+    expect(page).to have_content('batcave')
+  end
+
+
+  scenario 'cannot add listing unless signed in' do
+    expect{new_listing}.to change(Listing, :count).by(0)
+  end
+
 end

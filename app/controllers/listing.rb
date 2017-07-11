@@ -10,12 +10,17 @@ class Bnb < Sinatra::Base
   end
 
   post '/listings' do
-    Listing.first_or_create(title: params[:title],
-    location: params[:location],
-    beds: params[:beds],
-    price: params[:price],
-    max_guests: params[:max_guests])
-    redirect '/listings'
+    if current_user
+      Listing.first_or_create(title: params[:title],
+      location: params[:location],
+      beds: params[:beds],
+      price: params[:price],
+      max_guests: params[:max_guests])
+      redirect '/listings'
+    else
+      flash[:notice] = 'Sign in to create a listing'
+      redirect '/listings'
+    end
   end
 
   post '/search' do
