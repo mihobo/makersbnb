@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User
   include DataMapper::Resource
 
@@ -6,6 +8,10 @@ class User
   property :first_name, String
   property :last_name, String
   property :username, String
-  property :password, Text
+  property :password_digest, Text
+
+  def password=(password)
+    self.password_digest = BCrypt::Password.create(password)
+  end
 
 end
