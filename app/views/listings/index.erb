@@ -1,5 +1,11 @@
+<% if flash[:notice] %>
+<div id='notice'>
+  <%= flash[:notice] %>
+</div>
+<% end %>
 <h1>Listings</h1>
 <ul id='listings'>
+
   <% @listings.each do |listing| %>
   <li>
     Title: <%= listing.title %>
