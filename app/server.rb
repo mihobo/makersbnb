@@ -1,11 +1,8 @@
 class Bnb < Sinatra::Base
 
   enable :sessions
-
-  get '/' do
-    @username = current_user.username
-    erb :index
-  end
+  register Sinatra::Flash
+  set :session_secret, 'secret'
 
   helpers do
     def current_user
