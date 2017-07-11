@@ -1,6 +1,7 @@
 class Bnb < Sinatra::Base
 
   enable :sessions
+  register Sinatra::Flash
   set :session_secret, 'secret'
 
   helpers do

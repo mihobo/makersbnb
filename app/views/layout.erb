@@ -3,6 +3,14 @@
     <title>MakersBnb</title>
   </head>
   <body>
+    <% if flash[:errors] && !flash[:errors].empty? %>
+      Please refer to the following errors:
+      <ul id='errors'>
+        <% flash[:errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <% if current_user %>
       <%= current_user.username %>
     <% end %>
