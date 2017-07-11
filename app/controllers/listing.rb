@@ -18,11 +18,11 @@ class Bnb < Sinatra::Base
     redirect '/listings'
   end
 
-  post '/test' do
-    redirect "/search"
+  post '/search' do
+    redirect "/search/#{params[:location]}"
   end
 
-  get '/search' do
+  get '/search/:location' do
     @listings = Listing.all(location: params[:location])
     erb :'listings/index'
   end
