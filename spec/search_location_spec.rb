@@ -3,7 +3,6 @@ feature 'Search by location' do
     visit '/listings'
     fill_in 'location', with: 'London'
     click_button 'Search'
-    visit '/search/London'
     expect(page).to have_content('London')
   end
 end

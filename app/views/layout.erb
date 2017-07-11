@@ -1,8 +1,42 @@
 <html>
   <head>
     <title>MakersBnb</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Makers Bnb</a>
+        </div>
+
+        <div>
+          <form class="navbar-form navbar-left" action="/search" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" name="location" placeholder="Where are you going?">
+            </div>
+              <button class="btn btn-danger navbar-btn">Find</button>
+          </form>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="home-page"><a href="/listings/new"><span class="glyphicon glyphicon-home"></span> List Space</a></li>
+            <% if current_user %>
+              <li><a href="/listings"><span class="glyphicon glyphicon-glass"></span> Logged in as <%= current_user.username %> </a></li>
+              <li><a href="/listings"><span class="glyphicon glyphicon-log-out"></span> Sign Out </a></li>
+            <% else %>
+              <li><a href="/users/new"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="sessions/new"><span class="glyphicon glyphicon-log-in"></span> Sign In </a></li>
+            <% end %>
+        </ul>
+      </div>
+    </nav>
+
+        <div id="backgroundimage">
+
     <% if flash[:errors] && !flash[:errors].empty? %>
       Please refer to the following errors:
       <ul id='errors'>
@@ -11,10 +45,39 @@
         <% end %>
       </ul>
     <% end %>
-    <% if current_user %>
+    <!-- <% if current_user %>
       <%= current_user.username %>
-    <% end %>
+    <% end %> -->
   </body>
 
   <%= yield %>
 </html>
+
+<style>
+.navbar-brand {
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+	font-size: 30px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 35px;
+}
+
+#backgroundimage {
+  background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/New-York-Wallpaper-Background-26.jpg");
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+nav {
+  overflow: auto;
+}
+</style>
