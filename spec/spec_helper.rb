@@ -2,6 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require './app/app.rb'
 require './app/models/listing'
 require './app/models/user'
+require './app/models/booking'
 
 require 'capybara'
 require 'capybara/rspec'
