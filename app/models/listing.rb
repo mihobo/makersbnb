@@ -1,4 +1,5 @@
 class Listing
+
   include DataMapper::Resource
 
   property :id, Serial
@@ -7,4 +8,5 @@ class Listing
   property :beds, Integer
   property :price, String
   property :max_guests, Integer
+
 end
