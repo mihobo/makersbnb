@@ -15,7 +15,9 @@ class Bnb < Sinatra::Base
       location: params[:location],
       beds: params[:beds],
       price: params[:price],
-      max_guests: params[:max_guests])
+      max_guests: params[:max_guests],
+      user_id: current_user.id)
+      
       redirect '/listings'
     else
       flash[:notice] = 'Sign in to create a listing'
@@ -24,12 +26,21 @@ class Bnb < Sinatra::Base
   end
 
   post '/search' do
-    redirect "/search/#{params[:location]}&#{params[:max_guests]}"
+    if !params[:max_guests]
+      redirect "/search/#{params[:location]}"
+    else
+      redirect "/search/#{params[:location]}&#{params[:max_guests]}"
+    end
   end
 
   get "/search/:location&:max_guests" do
     @listings = Listing.all(location: params[:location], max_guests: params[:max_guests])
-
     erb :'listings/index'
   end
+
+  get "/search/:location&" do
+    @listings = Listing.all(location: params[:location], :max_guests.gte => 1)
+    erb :'listings/index'
+  end
+
 end
