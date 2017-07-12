@@ -3,8 +3,6 @@ require 'bcrypt'
 class User
   include DataMapper::Resource
 
-  has n, :bookings 
-
   property :id, Serial
   property :email, String, required: true, unique: true
   property :first_name, String, required: true
