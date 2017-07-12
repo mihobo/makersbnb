@@ -1,11 +1,9 @@
 feature 'Search by location' do
   before(:each) do
-    Listing.create(title: 'Nice room',
-    location: 'London',
-    beds: 3,
-    price: '£200',
-    max_guests: 3,
-    )
+    sign_up
+    sign_in(email: "johnsmith@aol.com", password: "password")
+    new_listing(title: "Nice room")
+    new_listing
   end
   scenario 'User can search by two criteria' do
     visit '/listings'

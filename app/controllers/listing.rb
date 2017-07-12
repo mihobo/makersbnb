@@ -15,7 +15,9 @@ class Bnb < Sinatra::Base
       location: params[:location],
       beds: params[:beds],
       price: params[:price],
-      max_guests: params[:max_guests])
+      max_guests: params[:max_guests],
+      user_id: current_user.id)
+      
       redirect '/listings'
     else
       flash[:notice] = 'Sign in to create a listing'
