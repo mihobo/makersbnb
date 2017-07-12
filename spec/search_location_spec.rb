@@ -10,8 +10,8 @@ feature 'Search by location' do
   scenario 'User can search by location' do
     visit '/listings'
     fill_in 'location', with: 'London'
+    fill_in 'max_guests', with: 3
     click_button 'Search'
-    visit '/search/London'
-    expect(page).to have_content('London')
+    expect(page).to have_content('Nice room')
   end
 end
