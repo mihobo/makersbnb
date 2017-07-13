@@ -23,4 +23,16 @@ class Bnb < Sinatra::Base
   get '/bookings/request' do
     erb :'bookings/request'
   end
+
+  get "/bookings/:booking_id" do
+    @booking_id = params[:booking_id]
+    erb :'bookings/new'
+  end
+
+  post "/bookings/confirm/:booking_id" do
+    booking = Booking.first(id: params[:booking_id])
+    booking.update(:confirmation => true)
+    erb :'/bookings/success'
+  end
+
 end
