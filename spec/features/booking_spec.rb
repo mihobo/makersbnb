@@ -15,4 +15,15 @@ feature 'can book a listing' do
     expect { new_booking(start_date: '2017-09-22', end_date: '2017-09-28') }.to change(Booking, :count).by(0)
     expect(page).to have_content('Dates are unavailable')
   end
+
+  scenario 'owner can access a page to confirm a booking' do
+    new_listing
+    new_booking
+    booking = Booking.first
+    visit "/bookings/#{booking.id}"
+    click_button 'Confirm Booking'
+    booking_updated = Booking.first
+    expect(booking_updated.confirmation).to be true
+    expect(page).to have_content('Booking confirmed!')
+  end
 end

@@ -10,6 +10,7 @@ class Booking
   property :id, Serial
   property :start_date, Date
   property :end_date, Date
+  property :confirmation, Boolean, :default => false
 
   def date_validation(start_date, end_date, listing_id)
     check_dates = []
