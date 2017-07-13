@@ -2,7 +2,7 @@ class Bnb < Sinatra::Base
 
   get '/bookings/bookingtrial' do
     erb :'bookings/bookingtrial'
-  end 
+  end
 
   post '/bookings' do
     @start_date = params[:start_date]
@@ -13,9 +13,14 @@ class Bnb < Sinatra::Base
     if booking.date_validation(@start_date, @end_date, 1)
       p booking.date_validation(@start_date, @end_date, 1)
       Booking.create(user_id: current_user.id, start_date: @start_date, end_date: @end_date, listing_id: @listing_id)
-      redirect ('/listings')
-    else 
-      redirect ('/listings')
-    end 
-  end 
-end 
+      redirect ('/bookings/request')
+    else
+      flash.now[:errors] = ['Dates are unavailable']
+      erb :'bookings/bookingtrial'
+    end
+  end
+
+  get '/bookings/request' do
+    erb :'bookings/request'
+  end
+end
