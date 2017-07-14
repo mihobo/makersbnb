@@ -8,16 +8,20 @@
 
   <% @listings.each do |listing| %>
   <li>
+    <a href ="/listings/<%= listing.id %>", name='id'>
     Title: <%= listing.title %>
     Location: <%= listing.location %>
     Beds: <%= listing.beds %>
     Price: <%= listing.price %>
     Max guests: <%= listing.max_guests %>
+    </a>
   </li>
+
   <% end %>
 </ul>
 
 <form action='/search' method='post'>
   <input type='text' name='location' />
+  <input type='text' name='max_guests' />
   <input type='submit' value='Search'/>
 </form>

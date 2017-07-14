@@ -1,0 +1,14 @@
+
+  <li>
+    Title: <%= @listing.title %>
+    Location: <%= @listing.location %>
+    Beds: <%= @listing.beds %>
+    Price: <%= @listing.price %>
+    Max guests: <%= @listing.max_guests %>
+  </li>
+  
+  <form action="/bookings/new/<%= @listing.id %>" method='get'>
+    <input type="hidden" name="<%= @listing.id %>">
+    <input type="submit" value="Book now">
+  </form>
+  
