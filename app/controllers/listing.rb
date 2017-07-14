@@ -32,9 +32,9 @@ class Bnb < Sinatra::Base
 
   post '/search' do
     if !params[:max_guests]
-      redirect "/search/#{params[:location]}"
+      redirect "/search/#{URI.escape(params[:location])}"
     else
-      redirect "/search/#{params[:location]}&#{params[:max_guests]}"
+      redirect "/search/#{URI.escape(params[:location])}&#{params[:max_guests]}"
     end
   end
 

@@ -20,4 +20,11 @@ feature 'Search by location' do
     expect(page).to have_content('Nice room')
   end
 
+  scenario 'User can search location with spaces' do
+    new_listing(location: "New York")
+    visit '/listings'
+    fill_in 'location', with: 'New York'
+    click_button 'Search'
+    expect(page).to have_content('New York')
+  end
 end
