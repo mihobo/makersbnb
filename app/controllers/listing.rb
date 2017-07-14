@@ -17,12 +17,17 @@ class Bnb < Sinatra::Base
       price: params[:price],
       max_guests: params[:max_guests],
       user_id: current_user.id)
-      
+
       redirect '/listings'
     else
       flash[:notice] = 'Sign in to create a listing'
       redirect '/listings'
     end
+  end
+
+  get "/listings/:listing_id" do
+    @listing = Listing.all(id: params[:listing_id])
+    erb :'listings/listing'
   end
 
   post '/search' do
