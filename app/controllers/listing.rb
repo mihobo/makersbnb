@@ -26,7 +26,7 @@ class Bnb < Sinatra::Base
   end
 
   get "/listings/:listing_id" do
-    @listing = Listing.all(id: params[:listing_id])
+    @listing = Listing.first(id: params[:listing_id])
     erb :'listings/listing'
   end
 
