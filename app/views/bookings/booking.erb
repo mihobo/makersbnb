@@ -1,0 +1,8 @@
+<form action='/bookings' method='post'>
+  Enter a start date:
+  <input type="date" name="start_date"><br>
+  Enter an end date:
+  <input type="date" name="end_date"><br>
+  <input type="hidden" name="listing_id" value="<%= @listing_id %>">
+  <input type="submit" value="Request booking">
+</form>
