@@ -26,4 +26,15 @@ feature 'can book a listing' do
     expect(booking_updated.confirmation).to be true
     expect(page).to have_content('Booking confirmed!')
   end
+  scenario 'user can access booking url' do
+    new_listing
+    go_to_booking
+    listing = Listing.first
+    expect(current_path).to eq "/bookings/new/#{listing.id}"
+  end
+  scenario 'user can make a booking request' do
+    new_listing
+    go_to_booking
+    expect{ request_booking }.to change(Booking, :count).by(1)
+  end 
 end

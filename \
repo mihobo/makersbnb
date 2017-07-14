@@ -15,6 +15,5 @@ module BookingsHelpers
   def request_booking(start_date: "2018-09-21", end_date: "2018-09-29")
     fill_in :start_date, with: start_date
     fill_in :end_date, with: end_date
-    click_button ('Request booking')
   end 
 end

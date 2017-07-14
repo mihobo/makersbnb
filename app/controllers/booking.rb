@@ -4,14 +4,22 @@ class Bnb < Sinatra::Base
     erb :'bookings/bookingtrial'
   end
 
+  get '/bookings/new/:listing_id' do
+    @listing_id = params[:listing_id]
+    erb :'bookings/booking'
+  end   
+
   post '/bookings' do
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @listing_id = params[:listing_id]
-    p @start_date
+    #p @start_date
+    #p @end_date
+    #p @listing_id
+    p current_user
     booking = Booking.new
-    if booking.date_validation(@start_date, @end_date, 1)
-      p booking.date_validation(@start_date, @end_date, 1)
+    p booking.date_validation(@start_date, @end_date, @listing_id)
+    if booking.date_validation(@start_date, @end_date, @listing_id)
       Booking.create(user_id: current_user.id, start_date: @start_date, end_date: @end_date, listing_id: @listing_id)
       redirect ('/bookings/request')
     else
