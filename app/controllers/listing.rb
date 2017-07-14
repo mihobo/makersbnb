@@ -17,7 +17,7 @@ class Bnb < Sinatra::Base
       price: params[:price],
       max_guests: params[:max_guests],
       user_id: current_user.id)
-      
+
       redirect '/listings'
     else
       flash[:notice] = 'Sign in to create a listing'
@@ -27,9 +27,9 @@ class Bnb < Sinatra::Base
 
   post '/search' do
     if !params[:max_guests]
-      redirect "/search/#{params[:location]}"
+      redirect "/search/#{URI.escape(params[:location])}"
     else
-      redirect "/search/#{params[:location]}&#{params[:max_guests]}"
+      redirect "/search/#{URI.escape(params[:location])}&#{params[:max_guests]}"
     end
   end
 
